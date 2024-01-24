@@ -39,8 +39,12 @@ $_SESSION['user'] = [
     'phone' => $userData['phone'],
 ];
 
-echo 'Logged in';
-exit();
+if ($userData['username'] == 'admin') {
+    header("Location: $viewBasePath/backend/UserList.php");
+} else {
+    echo 'Logged in';
+    exit();
+}
 
 // -- Git: GitLab / Github / BitBucket -> Pull Request / Merge request
 

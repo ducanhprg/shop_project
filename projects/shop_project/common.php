@@ -34,6 +34,10 @@ function redirectToLogin() {
     global $viewBasePath;
     header("Location: $viewBasePath/backend/login.php");
 }
+function redirectToSignup() {
+    global $viewBasePath;
+    header("Location: $viewBasePath/backend/signup.php");
+}
 
 function encryptPassword(string $password): string
 {
