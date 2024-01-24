@@ -62,6 +62,6 @@ class Users extends Models
     {
         $sqlString = "SELECT * FROM $this->table";
         $result = $this->db->query($sqlString);
-        return $result->fetch_assoc();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }

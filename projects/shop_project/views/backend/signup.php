@@ -6,14 +6,6 @@
 ?>
 
 <div>
-    <div>
-        <?php
-            if ($_SESSION['error']) {
-                echo '<label id="error-message">'. $_SESSION['error'] .'</label>';
-                unset($_SESSION['error']);
-            }
-        ?>
-    </div>
 
     <h2>Create new user</h2>
     <div>

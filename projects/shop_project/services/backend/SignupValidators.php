@@ -16,7 +16,7 @@ class SignupValidators
     public function validateUsername(): bool
     {
         // Check length & empty
-        if (empty($this->username) || !((strlen($this->username) > 8) && (strlen($this->username) < 15))) {
+        if (empty($this->username) || !((strlen($this->username) > 8) && (strlen($this->username) < 20))) {
             return false;
         }
         return true;

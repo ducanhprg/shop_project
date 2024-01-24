@@ -27,7 +27,7 @@
                 <input type="submit" value="Create new user">
             </div>
         </form>
-        <table id="user-list-table" border="1">
+        <table id="user-list-table" border="1" cellspacing="0">
             <tr>
                 <th>#</th>
                 <th>Username</th>
@@ -45,6 +45,10 @@
                 <td><?= $user['last_name'] ?></td>
                 <td><?= $user['phone'] ?></td>
                 <td><?= $user['email'] ?></td>
+                <td>
+                    <button>Active</button>
+                    <button style="background: red; color: white">Delete</button>
+                </td>
                 <?php $count++; ?>
             </tr>
             <?php endforeach ?>
