@@ -1,6 +1,5 @@
 <?php
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once "$root/shop_project/common.php";
+require_once '../../common.php';
 
 class Models
 {
@@ -9,6 +8,9 @@ class Models
     public function __construct()
     {
         global $conn;
+        echo  11111;
+        print_r($this->db);
+        exit();
         $this->db = $conn;
     }
 }

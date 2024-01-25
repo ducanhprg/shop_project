@@ -24,10 +24,14 @@ class Users extends Models
         $this->db->query($sqlString);
     }
 
-    public function findUserByUsernameAndPassword(string $username, string $password): null|array
+    public  function updateUser(array $userData): void
     {
-        $sqlString = "SELECT * FROM $this->table WHERE username = '$username' AND password = '$password'";
-        $result = $this->db->query($sqlString);
-        return $result->fetch_assoc();
+
     }
+
+    public function deleteUser(): void
+    {
+
+    }
+
 }

@@ -1,6 +1,5 @@
 <?php
-$root = $_SERVER['DOCUMENT_ROOT'];
-require_once "$root/shop_project/common.php";
+require_once '../../common.php';
 
-unset($_SESSION['user']);
-redirectToLogin();
+$userLogout = new UserLogout();
+$userLogout->logout();

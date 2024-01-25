@@ -1,20 +1,12 @@
 <?php
-    $root = $_SERVER['DOCUMENT_ROOT'];
-    require_once "$root/shop_project/common.php";
+require_once '../../common.php';
     global $controllerBasePath;
-
-    print_r($_SESSION['user']);
 ?>
 
 <div>
-    <div>
-        <?php
-            if ($_SESSION['error']) {
-                echo '<label id="error-message">'. $_SESSION['error'] .'</label>';
-                unset($_SESSION['error']);
-            }
-        ?>
-    </div>
+    <?php if (isset($_SESSION['error'])) : ?>
+        <span style="color: red"><?= $_SESSION['error']['fail'] ?></span>
+    <?php endif; ?>
 
     <h1>Login</h1>
     <div>
@@ -23,10 +15,16 @@
                 <label>Username:</label>
                 <div><input type="text" name="username" id="be-login-form-username"></div>
             </div>
+            <?php if (isset($_SESSION['error']['username'])) : ?>
+                <span style="color: red"><?= $_SESSION['error']['username'] ?></span>
+            <?php endif; ?>
             <div>
                 <label>Password:</label>
                 <div><input type="password" name="password" id="be-login-form-password"></div>
             </div>
+            <?php if (isset($_SESSION['error']['password'])) : ?>
+                <span style="color: red"><?= $_SESSION['error']['password'] ?></span>
+            <?php endif; ?>
             <div><button type="submit">Login</button> </div>
         </form>
     </div>

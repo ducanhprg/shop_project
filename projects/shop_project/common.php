@@ -21,20 +21,13 @@ $modelDirectory = "$root/shop_project/models";
 requirePHPFiles($modelDirectory);
 
 
-
-
-
-
-
-
-
-
-
-function redirectToLogin() {
-    global $viewBasePath;
-    header("Location: $viewBasePath/backend/login.php");
+// Support functions-----------------------------------------------------------------------------------
+// Redirect
+function redirect($url) {
+    header("Location: $url");
+    exit;
 }
-
+// Encrypt password
 function encryptPassword(string $password): string
 {
     global $secretKey;

@@ -11,36 +11,25 @@ $password = $_POST['password'];
 $loginValidators = new LoginValidators($username, $password);
 
 
-if (!$loginValidators->validate()) {
-    $_SESSION['error'] = 'Incorrect username or password';
-    redirectToLogin();
+if (!$loginValidators->Validate()) {
+    // Store errors in session
+    $error = $loginValidators->getErrors();
+    $_SESSION['error'] = $error;
+    // Redirect to login page if validation fails
+    redirect($viewBasePath.'/backend/login.php');
+}else{
+    // Store username and password in session
+    if ($username == 'admin' && $password == 'Admin99') {
+        $_SESSION['admin'] = true;
+        $_SESSION['adminUsername'] = $username;
+        $_SESSION['adminPassword'] = $password;
+        // Redirect to home page
+        redirect($viewBasePath.'/backend/home.php');
+    }else{
+        $_SESSION['error']['fail'] = 'Username or password is incorrect';
+        unset($_SESSION['error']['username']) ;
+        unset($_SESSION['error']['password']) ;
+        // Redirect to login page
+        redirect($viewBasePath.'/backend/login.php');
+    }
 }
-
-
-$encryptedPassword = encryptPassword($password);
-
-
-// compare with db
-// fail: go back to login page
-$userModel = new Users();
-$userData = $userModel->findUserByUsernameAndPassword($username, $encryptedPassword);
-if (empty($userData)) {
-    $_SESSION['error'] = 'Incorrect username or password';
-    redirectToLogin();
-}
-
-// user logged in -> create user session -> redirect to dashboard
-$_SESSION['user'] = [
-    'id' => $userData['id'],
-    'username' => $userData['username'],
-    'email' => $userData['email'],
-    'first_name' => $userData['first_name'],
-    'last_name' => $userData['last_name'],
-    'phone' => $userData['phone'],
-];
-
-echo 'Logged in';
-exit();
-
-// -- Git: GitLab / Github / BitBucket -> Pull Request / Merge request
-
