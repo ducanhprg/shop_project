@@ -23,7 +23,7 @@ $encryptedPassword = encryptPassword($password);
 // compare with db
 // fail: go back to login page
 $userModel = new Users();
-$userData = $userModel->findUserByUsernameAndPassword($username, $encryptedPassword);
+$userData = $userModel->findUserByUsernameAndPassword($username, $password);
 if (empty($userData)) {
     $_SESSION['error'] = 'Incorrect username or password';
     redirectToLogin();
