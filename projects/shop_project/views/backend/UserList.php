@@ -3,16 +3,12 @@
     $root = $_SERVER['DOCUMENT_ROOT'];
     require_once "$root/shop_project/common.php";
     global $controllerBasePath;
+    global $viewBasePath;
 
     $userModel = new Users();
     $usersData = $userModel->getAllUsers();
 
     $count = 0;
-
-    print_r($usersData);
-    echo '<br>';
-    echo $user['username'];
-    echo '<br>';
 
 ?>
 
@@ -47,7 +43,12 @@
                 <td><?= $user['email'] ?></td>
                 <td>
                     <button>Active</button>
-                    <button style="background: red; color: white">Delete</button>
+                    <form action="<?= $controllerBasePath ?>/backend/UserRemove.php" method="POST">
+                        <div>
+                            <input type="hidden" name="deleteName" value="<?= $user['username'] ?>">
+                            <input type="submit" value="Delete" style="background-color: red; color: white;">
+                        </div>
+                    </form>
                 </td>
                 <?php $count++; ?>
             </tr>

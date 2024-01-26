@@ -40,6 +40,7 @@ $_SESSION['user'] = [
 ];
 
 if ($userData['username'] == 'admin') {
+    unset($_SESSION['error']);
     header("Location: $viewBasePath/backend/UserList.php");
 } else {
     echo 'Logged in';

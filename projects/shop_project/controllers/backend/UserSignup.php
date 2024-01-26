@@ -34,7 +34,7 @@ if (!$signupValidators->validateEmail()) {
 $encryptedPassword = encryptPassword($_POST['password']);
 
 $userData = [
-    'password' => encryptPassword($userData['password']),
+    'password' => $encryptedPassword,
 ];
 
 // compare with db
@@ -48,4 +48,4 @@ if ($userModel->checkExistedUser($username)) {
 
 $userModel->createUser($userData);
 
-header("Location: $controllerBasePath/backend/UserSignup.php");
+header("Location: $viewBasePath/backend/UserList.php");

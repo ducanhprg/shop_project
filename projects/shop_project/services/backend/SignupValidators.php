@@ -36,7 +36,7 @@ class SignupValidators
         if (empty($this->userData['email'])) {
             return false;
         }
-        if (!strpos('@', $this->userData['email'])) {
+        if (!strpos($this->userData['email'], '@')) {
             return false;
         }
         return true;
