@@ -23,21 +23,20 @@ class Users extends Models
                 VALUES ('$values')";
         $this->db->query($sqlString);
     }
-    public function updateUser(int $userId, array $newUserData): void
+    public function updateUser(string $username, array $newUserData): void
     {
-        $updateParts = [];
+        $updateString = '';
         foreach ($newUserData as $key => $value) {
-            $updateParts[] = "$key = '$value'";
+            $updateString  .= "$key = '$value'";
         }
-        $updateString = implode(", ", $updateParts);
 
-        $sqlString = "UPDATE $this->table SET $updateString WHERE id = $userId";
+        $sqlString = "UPDATE $this->table SET $updateString WHERE username = $username";
         $this->db->query($sqlString);
     }
 
-    public function deleteUser(int $userId): void
+    public function deleteUser(string $username): void
     {
-        $sqlString = "DELETE FROM $this->table WHERE id = $userId";
+        $sqlString = "DELETE FROM $this->table WHERE username = $username";
         $this->db->query($sqlString);
     }
     

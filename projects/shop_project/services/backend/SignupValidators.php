@@ -2,21 +2,17 @@
 
 class SignupValidators
 {
-    private string $username;
-    private string $password;
-    private string $email;
+    private array $userData;
 
-    public function __construct(string $username, string $password, string $email)
+    public function __construct(array $userData)
     {
-        $this->username = $username;
-        $this->password = $password;
-        $this->email = $email;
+        $this->userData = $userData;
     }
 
     public function validateUsername(): bool
     {
         // Check length & empty
-        if (empty($this->username) || !((strlen($this->username) > 8) && (strlen($this->username) < 20))) {
+        if (empty($this->userData['username']) || !((strlen($this->userData['username']) > 8) && (strlen($this->userData['username']) < 20))) {
             return false;
         }
         return true;
@@ -25,11 +21,11 @@ class SignupValidators
     public function validatePassword(): bool
     {
         // Check length & empty
-        if (empty($this->password) || (strlen($this->password) < 8)) {
+        if (empty($this->userData['password']) || (strlen($this->userData['password']) < 8)) {
             return false;
         }
         // Check password's strength
-        if (!preg_match("/[^A-Za-z0-9 -]+/", $this->password)) {
+        if (!preg_match("/[^A-Za-z0-9 -]+/", $this->userData['password'])) {
             return false;
         }
         return true;
@@ -37,12 +33,35 @@ class SignupValidators
 
     public function validateEmail(): bool
     {
-        if (empty($this->email)) {
+        if (empty($this->userData['email'])) {
             return false;
         }
-        if (!strpos('@', $this->email)) {
+        if (!strpos('@', $this->userData['email'])) {
             return false;
         }
         return true;
     }
+
+    public function validateName(): bool
+    {
+        if (empty($this->userData['first_name']) || empty($this->userData['last_name'])) {
+            return false;
+        }
+        if (preg_match("/[0-9]/", $this->userData['first_name']) || 
+        preg_match("/[0-9]/", $this->userData['last_name']) || 
+        preg_match("/[^\w]/", $this->userData['first_name']) || 
+        preg_match("/[^\w]/", $this->userData['last_name'])) {
+            return false;
+        }
+        return true;
+    }
+
+    public function validatePhone(): bool
+    {
+        if (!(strlen($this->userData['phone']) == 12 || strlen($this->userData['phone']) == 0)) {
+            return false;
+        }
+        return true;
+    }
+
 }

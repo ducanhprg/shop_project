@@ -4,14 +4,17 @@ require_once "$root/shop_project/common.php";
 global $viewBasePath;
 
 // Get username and password from HTTP
-$username = $_POST['username'];
-$password = $_POST['password'];
-$email = $_POST['email'];
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
-$phone = $_POST['phone'];
 
-$signupValidators = new SignupValidators($username, $password, $email);
+$userData = [
+    'username' => $_POST['username'],
+    'password' => $_POST['password'],
+    'email' => $_POST['email'],
+    'first_name' => $_POST['first_name'],
+    'last_name' => $_POST['last_name'],
+    'phone' => $_POST['phone'],
+];
+
+$signupValidators = new SignupValidators($userData);
 
 if (!$signupValidators->validateUsername()) {
     $_SESSION['error'] = 'Invalid username';
@@ -28,6 +31,11 @@ if (!$signupValidators->validateEmail()) {
     redirectToSignup();
 }
 
+$encryptedPassword = encryptPassword($_POST['password']);
+
+$userData = [
+    'password' => encryptPassword($userData['password']),
+];
 
 // compare with db
 // fail: go back to login page
@@ -37,16 +45,6 @@ if ($userModel->checkExistedUser($username)) {
     redirectToSignup();
 }
 
-$encryptedPassword = encryptPassword($password);
-
-$userData = [
-    'username' => $username,
-    'password' => $encryptedPassword,
-    'email' => $email,
-    'first_name' => $first_name,
-    'last_name' => $last_name,
-    'phone' => $phone,
-];
 
 $userModel->createUser($userData);
 
