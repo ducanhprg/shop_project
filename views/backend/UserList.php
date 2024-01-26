@@ -4,6 +4,7 @@
 
   $userModel = new Users();
   $usersData = $userModel->getAllUsers();
+  global $viewBasePath;
 ?>
 
 
@@ -24,7 +25,16 @@
         color: red;
       }
 
-      button {
+      .status-blocked {
+        color: black;
+      }
+
+      .status-not-confirmed {
+        color: yellow;
+      }
+
+
+      .delete-button {
         background-color: red;
         color: white;
         border: 0;
@@ -53,13 +63,33 @@
                 <td><?=$user['last_name']; ?></td>
                 <td><?=$user['email']; ?></td>
                 <td><?=$user['phone']; ?></td>
-                <td class="<?php echo $user['status'] == 1 ? 'status-active' : 'status-inactive'; ?>">
-                    <?php echo $user['status'] == 1 ? 'Active' : 'Inactive'; ?>
-                    <button>Delete</button>
+                <td>
+                  <?php
+                      switch ($user['status']) {
+                        case 1:
+                          echo '<span class="status-active">Active</span>';
+                          break;
+                        case 2:
+                          echo '<span class="status-inactive">Inactive</span>';
+                          break;
+                        case 3:
+                          echo '<span class="status-blocked">Blocked</span>';
+                          break;
+                        case 4:
+                          echo '<span class="status-not-confirmed">Not confirmed by email</span>';
+                          break;
+                      }
+                    ?>
+                  <button class="list-button">Delete</button>
                 </td>
                 
             </tr>
         <?php endforeach; ?>
     </table>
+    <form action="<?= $viewBasePath ?>/backend/createUser.php">
+      <button type="submit" style="margin-top: 10px;" >
+        Create new User
+      </button>
+    </form>
   </body>
 </html>

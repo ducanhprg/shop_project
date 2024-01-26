@@ -15,6 +15,13 @@ class Users extends Models
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getAllUsers(): array
+    {
+        $sqlString = "SELECT * FROM $this->table";
+        $result = $this->db->query($sqlString);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function createUser(array $userData): void
     {
         $fields = implode(", ", array_keys($userData));
@@ -24,9 +31,32 @@ class Users extends Models
         $this->db->query($sqlString);
     }
 
+    public function updateUser(int $userId, array $userData): void
+    {
+        $updateString = "email = '{$userData['email']}',
+                         first_name = '{$userData['first_name']}', 
+                         last_name = '{$userData['last_name']},
+                         phone = '{$userData['phone']}";
+        $sqlString = "UPDATE $this->table SET $updateString WHERE id = $userId";
+        $this->db->query($sqlString);
+    }
+
     public function findUserByUsernameAndPassword(string $username, string $password): null|array
     {
         $sqlString = "SELECT * FROM $this->table WHERE username = '$username' AND password = '$password'";
+        $result = $this->db->query($sqlString);
+        return $result->fetch_assoc();
+    }
+
+    public function deleteUser(int $userId): void 
+    {
+        $sqlString = "DELETE FROM $this->table WHERE id = $userId";
+        $this->db->query($sqlString);
+    }
+
+    public function findUserByUsername(string $username): null|array
+    {
+        $sqlString = "SELECT * FROM $this->table WHERE username = '$username'";
         $result = $this->db->query($sqlString);
         return $result->fetch_assoc();
     }
