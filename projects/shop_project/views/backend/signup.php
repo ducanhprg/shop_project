@@ -3,13 +3,6 @@
     require_once "$root/shop_project/common.php";
     global $controllerBasePath;
 
-    print_r($_POST['updateName']);echo '<br>';
-
-    $userModel = new Users();
-    $userData = $userModel->findUserByUsername($_POST['updateName']);
-
-    print_r($userData);echo '<br>';
-    
 ?>
 
 <div>
@@ -22,12 +15,12 @@
         ?>
     </div>
 
-    <h2>Update user</h2>
+    <h2>Create new user</h2>
     <div>
-        <form id="be-update-form" action="<?= $controllerBasePath ?>/backend/UserUpdate.php" method="POST">
+        <form id="be-signup-form" action="<?= $controllerBasePath ?>/backend/UserSignup.php" method="POST">
             <div>
                 <label>Username:</label>
-                <div><input type="text" name="username" value="<?= $userData['username'] ?>"></div>
+                <div><input type="text" name="username"></div>
             </div>
             <div>
                 <label>Password:</label>
@@ -35,21 +28,21 @@
             </div>
             <div>
                 <label>Email:</label>
-                <div><input type="text" name="email" value="<?= $userData['email'] ?>"></div>
+                <div><input type="text" name="email"></div>
             </div>
             <div>
                 <label>First name:</label>
-                <div><input type="text" name="first_name" value="<?= $userData['first_name'] ?>"></div>
+                <div><input type="text" name="first_name"></div>
             </div>
             <div>
                 <label>Last name:</label>
-                <div><input type="text" name="last_name" value="<?= $userData['last_name'] ?>"></div>
+                <div><input type="text" name="last_name"></div>
             </div>
             <div>
                 <label>Phone:</label>
-                <div><input type="text" name="phone" value="<?= $userData['phone'] ?>"></div>
+                <div><input type="text" name="phone"></div>
             </div>
-            <div><br/><button type="submit">Update</button></div>
+            <div><br/><button type="submit">Create</button> </div>
         </form>
     </div>
 </div>

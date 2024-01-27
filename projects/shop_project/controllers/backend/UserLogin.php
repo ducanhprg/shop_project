@@ -6,16 +6,23 @@ global $viewBasePath;
 // Get username and password from HTTP
 $username = $_POST['username'];
 $password = $_POST['password'];
+$userData = [
+    'username' => $_POST['username'],
+    'password' => $_POST['password'],
+];
 
 // Validate username and password
-$loginValidators = new LoginValidators($username, $password);
+$loginValidators = new Validators($userData);
 
-
-if (!$loginValidators->validate()) {
-    $_SESSION['error'] = 'Incorrect username or password';
-    redirectToLogin();
+if (!$loginValidators->validateUsername()) {
+    $_SESSION['error'] = 'Invalid username';
+    redirectToSignup();
 }
 
+if (!$loginValidators->validatePassword()) {
+    $_SESSION['error'] = 'Invalid password';
+    redirectToSignup();
+}
 
 $encryptedPassword = encryptPassword($password);
 
@@ -39,8 +46,13 @@ $_SESSION['user'] = [
     'phone' => $userData['phone'],
 ];
 
-echo 'Logged in';
-exit();
+if ($_SESSION['user']['username'] == 'admin') {
+    unset($_SESSION['error']);
+    header("Location: $viewBasePath/backend/UserList.php");
+} else {
+    echo 'Logged in';
+    exit();
+}
 
 // -- Git: GitLab / Github / BitBucket -> Pull Request / Merge request
 

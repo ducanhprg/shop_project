@@ -24,15 +24,17 @@ requirePHPFiles($modelDirectory);
 
 
 
-
-
-
-
-
-
 function redirectToLogin() {
     global $viewBasePath;
     header("Location: $viewBasePath/backend/login.php");
+}
+function redirectToSignup() {
+    global $viewBasePath;
+    header("Location: $viewBasePath/backend/signup.php");
+}
+function redirectToUpdate() {
+    global $viewBasePath;
+    header("Location: $viewBasePath/backend/updateUser.php");
 }
 
 function encryptPassword(string $password): string

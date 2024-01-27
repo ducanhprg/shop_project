@@ -3,7 +3,13 @@
     require_once "$root/shop_project/common.php";
     global $controllerBasePath;
 
-    print_r($_SESSION['user']);
+    $userModel = new Users();
+    $firstUser = $userModel->getFirstUser();
+    
+    if (empty($firstUser)) {
+        header("Location: ../../createFirstUser.php");
+    }
+    
 ?>
 
 <div>
