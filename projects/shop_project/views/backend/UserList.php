@@ -36,18 +36,31 @@
             <?php foreach ($usersData as $user): ?>
             <tr>
                 <td><?= $count + 1 ?></td>
-                <td><?= $user['username'] ?></td>
+                <td>
+                    <form action="<?= $viewBasePath ?>/backend/updateUser.php" method="POST">
+                        <input type="hidden" name="updateName" value="<?= $user['username'] ?>">
+                        <input type="submit" value="<?= $user['username'] ?>" style="border: 0; background-color: white;"></input>
+                    </form>
+                    
+                </td>
                 <td><?= $user['first_name'] ?></td>
                 <td><?= $user['last_name'] ?></td>
                 <td><?= $user['phone'] ?></td>
                 <td><?= $user['email'] ?></td>
                 <td>
-                    <button>Active</button>
+                    <!-- <? switch($user['status']):
+                        case 1: ?>
+                            <button>Active</button>
+                        <? break; case 2: ?>
+                            <button>Inactive</button>
+                        <? break; case 3: ?>
+                            <button>Blocked</button>
+                        <? break; case 4: ?>
+                            <button>Not confirmed by email</button>
+                    <? endswitch ?> -->
                     <form action="<?= $controllerBasePath ?>/backend/UserRemove.php" method="POST">
-                        <div>
-                            <input type="hidden" name="deleteName" value="<?= $user['username'] ?>">
-                            <input type="submit" value="Delete" style="background-color: red; color: white;">
-                        </div>
+                        <input type="hidden" name="deleteName" value="<?= $user['username'] ?>">
+                        <input type="submit" value="Delete" style="background-color: red; color: white;">
                     </form>
                 </td>
                 <?php $count++; ?>

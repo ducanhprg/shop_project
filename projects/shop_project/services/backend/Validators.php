@@ -1,6 +1,6 @@
 <?php
 
-class SignupValidators
+class Validators
 {
     private array $userData;
 

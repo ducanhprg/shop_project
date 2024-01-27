@@ -3,18 +3,9 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 require_once "$root/shop_project/common.php";
 global $viewBasePath;
 
-// Get username and password from HTTP
+$userData = $_POST;
 
-$userData = [
-    'username' => $_POST['username'],
-    'password' => $_POST['password'],
-    'email' => $_POST['email'],
-    'first_name' => $_POST['first_name'],
-    'last_name' => $_POST['last_name'],
-    'phone' => $_POST['phone'],
-];
-
-$signupValidators = new SignupValidators($userData);
+$signupValidators = new Validators($userData);
 
 if (!$signupValidators->validateUsername()) {
     $_SESSION['error'] = 'Invalid username';
@@ -31,14 +22,18 @@ if (!$signupValidators->validateEmail()) {
     redirectToSignup();
 }
 
-$encryptedPassword = encryptPassword($_POST['password']);
+if (!$signupValidators->validateName()) {
+    $_SESSION['error'] = 'Invalid name';
+    redirectToSignup();
+}
 
-$userData = [
-    'password' => $encryptedPassword,
-];
+if (!$signupValidators->validatePhone()) {
+    $_SESSION['error'] = 'Invalid phone';
+    redirectToSignup();
+}
 
-// compare with db
-// fail: go back to login page
+$userData['password'] = encryptPassword($_POST['password']);
+
 $userModel = new Users();
 if ($userModel->checkExistedUser($username)) {
     $_SESSION['error'] = 'User already exists';

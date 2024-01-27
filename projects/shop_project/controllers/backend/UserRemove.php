@@ -1,12 +1,9 @@
 <?php
 
-print_r($_POST['deleteName']);
+$root = $_SERVER['DOCUMENT_ROOT'];
+require_once "$root/shop_project/common.php";
 
 $userModel = new Users();
-echo 111;
 $userModel->deleteUser($_POST['deleteName']);
-echo 111;
-
 header("Location: $viewBasePath/backend/UserList.php");
-echo 111;
 
