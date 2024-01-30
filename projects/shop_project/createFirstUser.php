@@ -13,11 +13,10 @@ if (empty($firstUser)) {
         'password' => encryptPassword('Admin99'),
         'email' => 'admin@gmail.com',
         'first_name' => 'Dao',
-        'last_name' => 'Dat'
+        'last_name' => 'Dat',
     ];
     $userModel->createUser($userData);
 }
-
-// redirect to login page
+//// redirect to login page
 redirect('../views/backend/login.php');
 

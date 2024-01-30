@@ -12,7 +12,7 @@ class LoginValidators
         $this->password = $password;
     }
 
-    public function Validate(): bool
+    public function validateCreate(): bool
     {
         // check cac case validation
         if (empty($this->username)) {
@@ -28,6 +28,19 @@ class LoginValidators
         } elseif (!preg_match('/^([A-Z])([\w_\.!@#$%^&*()]+){4,31}$/', $this->password)) {
             $this->errors['password'] = 'The password must contain at least one letter, 
                                          Capitalize the first letter.';
+        }
+
+        return empty($this->errors);
+    }
+
+    public function validateLogin(): bool
+    {
+        // check cac case validation
+        if (empty($this->username)) {
+            $this->errors['username'] = 'Username is required';
+        }
+        if (empty($this->password)) {
+            $this->errors['password'] = 'Password is required';
         }
 
         return empty($this->errors);

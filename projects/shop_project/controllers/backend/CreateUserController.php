@@ -1,6 +1,7 @@
 <?php
 require_once '../../common.php';
 require_once '../../models/Users.php';
+global $viewBasePath;
 if (isset($_POST['btn-add-member'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -22,5 +23,5 @@ if (isset($_POST['btn-add-member'])) {
     $addUser = new Users();
     $addUser->createUser($userData);
 
-    redirect('../../controllers/backend/login.php');
+    redirect($viewBasePath . '/backend/login.php');
 }

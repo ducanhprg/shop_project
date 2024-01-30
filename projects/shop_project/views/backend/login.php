@@ -4,13 +4,13 @@ require_once '../../common.php';
 ?>
 
 <div>
-    <?php if (isset($_SESSION['error'])) : ?>
-        <span style="color: red"><?= $_SESSION['error']['fail'] ?></span>
+    <?php if (isset($_SESSION['error']['fail'])) : ?>
+        <span style="color: red"><?= $_SESSION['error']['fail']?></span>
     <?php endif; ?>
 
     <h1>Login</h1>
     <div>
-        <form id="be-login-form" action="<?= $controllerBasePath ?>/backend/UserLogin.php" method="POST">
+        <form id="be-login-form" action="<?= $controllerBasePath ?>/backend/UserLoginController.php" method="POST">
             <div>
                 <label>Username:</label>
                 <div><input type="text" name="username" id="be-login-form-username"></div>
@@ -25,7 +25,7 @@ require_once '../../common.php';
             <?php if (isset($_SESSION['error']['password'])) : ?>
                 <span style="color: red"><?= $_SESSION['error']['password'] ?></span>
             <?php endif; ?>
-            <div><button type="submit">Login</button> </div>
+            <div><button type="submit" name="btn-login">Login</button> </div>
         </form>
     </div>
 </div>

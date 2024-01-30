@@ -12,7 +12,7 @@ global $controllerBasePath;
 <body>
 <div>
     <h1>Add Member</h1>
-    <form id="" action="../../controllers/backend/CreateUser.php" method="POST">
+    <form id="" action="../../controllers/backend/CreateUserController.php" method="POST">
         <div>
             <label for="username">Username:</label>
             <div><input type="text" name="username" id=""></div>
