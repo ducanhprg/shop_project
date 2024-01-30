@@ -17,7 +17,7 @@
 
     <h2>Create new user</h2>
     <div>
-        <form id="be-login-form" action="<?= $controllerBasePath ?>/backend/UserCreate.php" method="POST">
+        <form id="be-create-form" action="<?= $controllerBasePath ?>/backend/UserCreate.php" method="POST">
             <div>
                 <label>Username:</label>
                 <div><input type="text" name="username" required></div>

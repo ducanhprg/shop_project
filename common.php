@@ -27,7 +27,10 @@ requirePHPFiles($modelDirectory);
 
 
 
-
+function redirectToCreateUser() {
+    global $viewBasePath;
+    header("Location: $viewBasePath/backend/createUser.php");
+}
 
 
 function redirectToLogin() {
