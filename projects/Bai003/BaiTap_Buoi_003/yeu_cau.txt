@@ -1,4 +1,0 @@
-- Lam lai bai tap buoi truoc
-- Thong tin contacts se duoc luu vao database
-- Tham khao cach viet query: https://www.w3schools.com/sql/sql_examples.asp
-- Rut gon code ngan nhat co the
