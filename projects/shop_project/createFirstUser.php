@@ -5,20 +5,18 @@ require_once './common.php';
 
 $userModel = new Users();
 $firstUser = $userModel->getFirstUser();
-
 if (empty($firstUser)) {
     // if db does not have user -> create default first user -> redirect to login page
     // create default user
     $userData = [
         'username' => 'admin',
-        'password' => encryptPassword('admin'),
-        'email' => 'admin@localhost',
-        'first_name' => 'Admin',
-        'last_name' => 'System'
+        'password' => encryptPassword('Admin99'),
+        'email' => 'admin@gmail.com',
+        'first_name' => 'Dao',
+        'last_name' => 'Dat',
     ];
     $userModel->createUser($userData);
 }
-
-// redirect to login page
-redirectToLogin();
+//// redirect to login page
+redirect('../views/backend/login.php');
 
