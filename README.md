@@ -1,24 +1,38 @@
-1- Open terminal in project folder
+1. Backend
 
-2- Run: 
- - Windows OS: .\start.sh
- - Linux/MacOS: bash ./start.sh
+    . Login
 
-3- Source code in: `./projects` folder
+    . Manage user
 
-4- MySQL Server:
-- access from local machine: `localhost:3306`
-- access from other docker container: `DOCKER_MYSQL` at port: `3306`
+    . Manage categories
 
-5- URL
+    . Manage products
 
-- Root: localhost
-- PhpMyAdmin: localhost:8081
+    . Manage temporary orders
 
-6- Redis Server:
-- access from local machine: `localhost:6379`
-- access from other docker container: `DOCKER_REDIS` at port:`6379`
+    . Manage orders
 
-7- Stop:
- - Windows OS: .\stop.sh
- - Linux/MacOS: bash ./stop.sh
+
+
+2. Frontend
+
+    . View product list + filter by name, category
+
+    . Login
+
+    . Add to cart
+
+    . Place order
+
+    . Profile
+
+-------------------
+Bai tap cho t3: 23/01/2024
+- Hoan thanh validate cho phan login
+- Quan ly user: Them, sua, xoa thong tin user
+- Lam quen voi GIT
+- Tao Merge Request phan code cua minh
+
+Noi dung buoi sau
+- GitLab, GitHub, BitBucket
+- Tiep tuc flow cho backend

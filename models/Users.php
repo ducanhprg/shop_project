@@ -54,9 +54,9 @@ class Users extends Models
         $this->db->query($sqlString);
     }
 
-    public function findUserByUsername(string $username): null|array
+    public function findUserByUserNameAndEmail(string $username, string $email): null|array
     {
-        $sqlString = "SELECT * FROM $this->table WHERE username = '$username'";
+        $sqlString = "SELECT * FROM $this->table WHERE username = '$username' or email = '$email'";
         $result = $this->db->query($sqlString);
         return $result->fetch_assoc();
     }
