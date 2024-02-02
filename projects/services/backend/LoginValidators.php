@@ -24,7 +24,7 @@ class LoginValidators
 
     private function validateUsername(): void
     {
-        if (!$this->checkFormat()) {
+        if (!$this->checkFormat($this->username)) {
             $this->errors[] = 'Incorrect username format';
         }
 
@@ -32,14 +32,14 @@ class LoginValidators
             $this->errors[] = 'Username must contains 5 to 12 characters';
         }
 
-        if (!$this->checkSpecialCharacters()) {
+        if (!$this->checkSpecialCharacters($this->username)) {
             $this->errors[] = 'Username must not contain special characters';
         }
     }
 
     private function validatePassword(): void
     {
-        if (!$this->checkFormat()) {
+        if (!$this->checkFormat($this->password)) {
             $this->errors[] = 'Incorrect password format';
         }
 
@@ -47,24 +47,23 @@ class LoginValidators
             $this->errors[] = 'Password must contains 6 to 12 characters';
         }
 
-        if (!$this->checkSpecialCharacters()) {
+        if (!$this->checkSpecialCharacters($this->password)) {
             $this->errors[] = 'Password must not contain special characters';
         }
     }
 
-    private function checkFormat(): bool
+    public function checkFormat(string $text): bool
     {
-        return false;
+        return true;
     }
 
-    private function checkLength(int $min, int $max): bool
+    public function checkLength(int $min, int $max): bool
     {
-        return false;
+        return true;
     }
 
-    private function checkSpecialCharacters(): bool
+    public function checkSpecialCharacters(string $text): bool
     {
-        return false;
+        return true;
     }
-
 }

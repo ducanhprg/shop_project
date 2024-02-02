@@ -1,7 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
     global $controllerBasePath;
-    print_r($_SESSION['error']);
 ?>
 
 <div>

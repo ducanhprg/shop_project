@@ -18,8 +18,6 @@ if (!$loginValidators->validate()) {
 }
 
 $encryptedPassword = encryptPassword($password);
-// compare with db
-// fail: go back to login page
 $userModel = new Users();
 $userData = $userModel->findUserByUsernameAndPassword($username, $encryptedPassword);
 if (empty($userData)) {
@@ -37,8 +35,6 @@ $_SESSION['user'] = [
     'phone' => $userData['phone'],
 ];
 
-echo 'Logged in';
-exit();
-
-// -- Git: GitLab / Github / BitBucket -> Pull Request / Merge request
+header("Location: $viewBasePath/backend/dashboard.php");
+exit;
 
