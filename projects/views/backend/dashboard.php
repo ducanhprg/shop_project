@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/common.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/views/backend/common/menu.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/views/backend/common/footer.php';*/
 global $controllerBasePath;
-
+global $viewBasePath;
 ?>
 
 <style>
@@ -79,7 +79,7 @@ global $controllerBasePath;
             <div style="margin: 2% auto;" >
                 <ul>
                     <li>
-                        <a href="<?= $controllerBasePath ?>/backend/users.php">Users</a>
+                        <a href="<?= $viewBasePath ?>/backend/UserList.php">Users</a>
                     </li>
                     <li>
                         <a href="<?= $controllerBasePath ?>/backend/products.php">Product Management</a>
@@ -101,7 +101,7 @@ global $controllerBasePath;
                     <li>
                         <label id="menu-settings">Settings</label>
                         <ul id="menu-settings-list" class="no-display">
-                            <li><a href="<?= $controllerBasePath ?>/backend/users.php">Roles</a></li>
+                            <li><a href="<?= $viewBasePath ?>/backend/rolesManagement.php">Roles</a></li>
                             <li><a href="<?= $controllerBasePath ?>/backend/users.php">Permissions</a></li>
                         </ul>
                     </li>
