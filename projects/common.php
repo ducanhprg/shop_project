@@ -40,6 +40,11 @@ function redirectToCreateUser() {
     header("Location: $viewBasePath/backend/createUser.php");
     exit();
 }
+function redirectToCreateRole() {
+    global $viewBasePath;
+    header("Location: $viewBasePath/backend/createRole.php");
+    exit();
+}
 
 function encryptPassword(string $password): string
 {

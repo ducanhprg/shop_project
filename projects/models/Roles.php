@@ -42,4 +42,14 @@ class Roles extends \Models
         $result = $this->db->query($sqlString);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function checkExistedRole(string $name): bool
+    {
+        $sqlString = "SELECT * FROM $this->table WHERE name = '$name'";
+        $result = $this->db->query($sqlString)->fetch_assoc();
+        if (empty($result)) {
+            return false;
+        }
+        return true;
+    }
 }

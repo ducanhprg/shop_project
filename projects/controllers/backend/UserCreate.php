@@ -15,7 +15,7 @@ $userData = $_POST;
 
 $userData['password'] = encryptPassword($_POST['password']);
 $userModel = new Users();
-if ($userModel->checkExistedUser($username)) {
+if ($userModel->checkExistedUser($userData['username'])) {
     $_SESSION['error'] = 'User already exists';
     redirectToCreateUser();
 }
