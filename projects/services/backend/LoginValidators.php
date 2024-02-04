@@ -28,7 +28,7 @@ class LoginValidators
             $this->errors[] = 'Incorrect username format';
         }
 
-        if (!$this->checkLength(5, 12)) {
+        if (!$this->checkLength($this->username, 5, 12)) {
             $this->errors[] = 'Username must contains 5 to 12 characters';
         }
 
@@ -43,7 +43,7 @@ class LoginValidators
             $this->errors[] = 'Incorrect password format';
         }
 
-        if (!$this->checkLength(6, 12)) {
+        if (!$this->checkLength($this->password, 6, 12)) {
             $this->errors[] = 'Password must contains 6 to 12 characters';
         }
 
@@ -57,13 +57,19 @@ class LoginValidators
         return true;
     }
 
-    public function checkLength(int $min, int $max): bool
+    public function checkLength(string $text, int $min, int $max): bool
     {
+        if (strlen($text) < $min || strlen($text) > $max) {
+            return false;
+        }
         return true;
     }
 
     public function checkSpecialCharacters(string $text): bool
     {
+        if (!preg_match("/[^\w]/", $text)) {
+            return false;
+        }
         return true;
     }
 }
