@@ -59,17 +59,17 @@ class LoginValidators
 
     public function checkLength(string $text, int $min, int $max): bool
     {
-        if (strlen($text) < $min || strlen($text) > $max) {
-            return false;
-        }
+//        if (strlen($text) < $min || strlen($text) > $max) {
+//            return false;
+//        }
         return true;
     }
 
     public function checkSpecialCharacters(string $text): bool
     {
-        if (!preg_match("/[^\w]/", $text)) {
-            return false;
-        }
+//        if (!preg_match("/[^\w]/", $text)) {
+//            return false;
+//        }
         return true;
     }
 }
