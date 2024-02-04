@@ -1,8 +1,11 @@
 <?php
 
+use models\Permissions;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/common.php';
 global $controllerBasePath;
 
+$perModel = new Permissions();
+$persData = $perModel->getAllPermissions();
 ?>
 
 <div>
@@ -33,8 +36,20 @@ global $controllerBasePath;
             <div>
                 <label>Updated by:</label>
                 <div><input type="text" name="updated_by" value="<?= $_SESSION['user']['id'] ?>"></div>
+            </div><br/>
+            <?php foreach ($persData as $per): ?>
+                <input type="checkbox" name="<?= $per['sapo']?>">
+                <label> <?php echo $per['name'] ?> </label><br>
+            <?php endforeach; ?>
+            <div><br/>
+                <button type="submit">Save</button>
             </div>
-            <div><br/><button type="submit">Create</button> </div>
         </form>
     </div>
 </div>
+
+<form action="<?= $viewBasePath ?>/backend/rolesManagement.php" method="POST">
+    <div>
+        <input type="submit" value="Back">
+    </div>
+</form>
